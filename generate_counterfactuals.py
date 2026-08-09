@@ -61,6 +61,24 @@ def batch_generate(model, tokenizer, messages_list, max_new_tokens, device):
     ]
 
 
+STRING_FIELDS = [
+    "entity_1", "entity_2", "attribute", "property", "value_1", "value_2",
+    "value_span_1", "value_span_2", "intervention_entity", "original_fact",
+    "counterfactual_value", "counterfactual_fact", "changed_span",
+    "counterfactual_answer", "original_answer", "comparison_type", "reason",
+]
+
+
+def normalize_result(result):
+    if not isinstance(result, dict):
+        return result
+    for key in STRING_FIELDS:
+        value = result.get(key)
+        if value is not None and not isinstance(value, str):
+            result[key] = str(value)
+    return result
+
+
 def intervention_type_for(comparison_type, direction):
     if comparison_type == "same_attribute":
         return "break_equality" if direction == "yes_to_no" else "create_equality"
@@ -206,7 +224,7 @@ def main():
             model, tokenizer, [counterfactual_messages(c) for c in batch],
             args.max_new_tokens, device,
         )
-        results = [extract_json(t) for t in texts]
+        results = [normalize_result(extract_json(t)) for t in texts]
 
         for c, result in zip(batch, results):
             if result is not None and result.get("valid"):
@@ -215,7 +233,12 @@ def main():
                 stats["structural_invalid"] += 1
                 continue
 
-            passed, checks, _ = verify_counterfactual(c, result)
+            try:
+                passed, checks, _ = verify_counterfactual(c, result)
+            except Exception as e:
+                print(f"\nWARNING: verify_counterfactual crashed on id={c['id']}: {e}")
+                stats["validation_failed"] += 1
+                continue
             if not passed:
                 stats["validation_failed"] += 1
                 continue

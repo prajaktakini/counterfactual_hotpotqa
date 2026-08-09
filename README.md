@@ -50,3 +50,19 @@ Each line of `counterfactual_{train,val}.jsonl` has: `question`,
 (`break_equality`/`create_equality`/`remove_property`/`add_property`),
 `is_synthetic: true`, and a `validation` object with the programmatic checks
 that passed.
+
+## Published dataset
+
+`counterfactual_{train,val}.jsonl` (2,046 train / 168 val rows) are published on
+the Hugging Face Hub as
+[`prajaktakini/counterfactual-hotpotqa`](https://huggingface.co/datasets/prajaktakini/counterfactual-hotpotqa):
+
+```python
+from datasets import load_dataset
+
+ds = load_dataset("prajaktakini/counterfactual-hotpotqa")
+train, val = ds["train"], ds["validation"]
+```
+
+`phase1_candidates_{train,val}.jsonl` are not published — they're the
+pre-LLM-filter candidate pool, regenerable locally via `build_candidates.py`.
