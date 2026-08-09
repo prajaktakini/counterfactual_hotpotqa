@@ -94,11 +94,26 @@ See `CITATION.cff`, or:
 and the source HotpotQA dataset:
 
 ```bibtex
-@inproceedings{yang2018hotpotqa,
-  title={{HotpotQA}: A Dataset for Diverse, Explainable Multi-hop Question Answering},
-  author={Yang, Zhilin and Qi, Peng and Zhang, Saizheng and Bengio, Yoshua and Cohen, William W.
-          and Salakhutdinov, Ruslan and Manning, Christopher D.},
-  booktitle={Conference on Empirical Methods in Natural Language Processing (EMNLP)},
-  year={2018}
+@inproceedings{yang-etal-2018-hotpotqa,
+    title = "{H}otpot{QA}: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+    author = "Yang, Zhilin  and
+      Qi, Peng  and
+      Zhang, Saizheng  and
+      Bengio, Yoshua  and
+      Cohen, William  and
+      Salakhutdinov, Ruslan  and
+      Manning, Christopher D.",
+    editor = "Riloff, Ellen  and
+      Chiang, David  and
+      Hockenmaier, Julia  and
+      Tsujii, Jun{'}ichi",
+    booktitle = "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+    month = oct # "-" # nov,
+    year = "2018",
+    address = "Brussels, Belgium",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D18-1259/",
+    doi = "10.18653/v1/D18-1259",
+    pages = "2369--2380",
 }
 ```
