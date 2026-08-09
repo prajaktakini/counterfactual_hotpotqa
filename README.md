@@ -74,3 +74,19 @@ train, val = ds["train"], ds["validation"]
 the pre-LLM-filter candidate pool, regenerable locally via
 `build_candidates.py`. `combine_phases.py` folds them into the published
 dataset via `passages`/`counterfactual_passages`.
+
+## Citation
+
+See `CITATION.cff`, or:
+
+```bibtex
+@dataset{kini2026counterfactual,
+  author    = {Prajakta Kini},
+  title     = {Counterfactual HotpotQA},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.21863314},
+  url       = {https://doi.org/10.5281/zenodo.21863314}
+}
+```
