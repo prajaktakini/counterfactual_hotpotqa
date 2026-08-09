@@ -90,3 +90,15 @@ See `CITATION.cff`, or:
   url       = {https://doi.org/10.5281/zenodo.21863314}
 }
 ```
+
+and the source HotpotQA dataset:
+
+```bibtex
+@inproceedings{yang2018hotpotqa,
+  title={{HotpotQA}: A Dataset for Diverse, Explainable Multi-hop Question Answering},
+  author={Yang, Zhilin and Qi, Peng and Zhang, Saizheng and Bengio, Yoshua and Cohen, William W.
+          and Salakhutdinov, Ruslan and Manning, Christopher D.},
+  booktitle={Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2018}
+}
+```
