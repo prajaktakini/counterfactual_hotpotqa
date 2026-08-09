@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Counterfactual HotpotQA"
+message: "If you use this dataset, please cite it as follows."
+type: dataset
+authors:
+  - family-names: "Kini"
+    given-names: "Prajakta"
+repository-code: "https://github.com/prajaktakini/counterfactual_hotpotqa"
+url: "https://huggingface.co/datasets/prajaktakini/counterfactual-hotpotqa"
+version: "1.0.0"
+date-released: "2026-08-09"
+license: "CC-BY-SA-4.0"

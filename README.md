@@ -16,6 +16,11 @@ while keeping the question and entity names fixed.
    intervention. The result is verified deterministically in Python
    (`verify_counterfactual`, no second LLM call) before being kept. Writes
    `counterfactual_{train,val}.jsonl`. Supports resuming and batched inference.
+4. `combine_phases.py` - joins Phase 1 candidates with Phase 2 counterfactuals
+   on `id`, adding `passages` (original supporting facts) and
+   `counterfactual_passages` (with the one intervened fact swapped in) to each
+   row. Writes `combined_{train,val}.jsonl`; `--push` also pushes the result
+   to the Hub.
 
 ## Setup
 
@@ -53,8 +58,9 @@ that passed.
 
 ## Published dataset
 
-`counterfactual_{train,val}.jsonl` (2,046 train / 168 val rows) are published on
-the Hugging Face Hub as
+The combined Phase 1 + Phase 2 rows (2,046 train / 168 val), including
+`passages` and `counterfactual_passages`, are published on the Hugging Face
+Hub as
 [`prajaktakini/counterfactual-hotpotqa`](https://huggingface.co/datasets/prajaktakini/counterfactual-hotpotqa):
 
 ```python
@@ -64,5 +70,7 @@ ds = load_dataset("prajaktakini/counterfactual-hotpotqa")
 train, val = ds["train"], ds["validation"]
 ```
 
-`phase1_candidates_{train,val}.jsonl` are not published — they're the
-pre-LLM-filter candidate pool, regenerable locally via `build_candidates.py`.
+`phase1_candidates_{train,val}.jsonl` themselves are not published — they're
+the pre-LLM-filter candidate pool, regenerable locally via
+`build_candidates.py`. `combine_phases.py` folds them into the published
+dataset via `passages`/`counterfactual_passages`.
